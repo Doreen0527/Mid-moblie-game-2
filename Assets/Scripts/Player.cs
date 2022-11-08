@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     public Joystick joyStick;
     public Transform firePoint;
     public GameObject bulletPrefab;
+    public Material gold;
+    public Material blue;
 
     private CharacterController controller;
 
@@ -105,4 +107,38 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
     }
+
+    private void OnCollisionEnter(Collision other) 
+    {
+        Vector3 player =new Vector3(0 , 1 , -23.3f);
+        if (other.gameObject.name=="Enemy")
+           gameObject.transform.position= player;
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+      if (other.gameObject.tag == "gold")
+      {
+          GetComponent<MeshRenderer>().material=gold ;
+      }
+
+      if (other.gameObject.tag == "gold")
+      {
+          Destroy (other.gameObject);
+      }
+    }
+
+     private void OnTriggerStay(Collider other) 
+    {
+      if(other.gameObject.tag == "gold")
+      {
+          Invoke("D", 0.2f);
+      }
+    }
+    void D()
+    {
+      GetComponent<MeshRenderer>().material= blue ;
+    }
+    
 }
