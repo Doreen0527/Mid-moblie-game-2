@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public GameObject bulletPrefab;
     public Material gold;
     public Material blue;
+    private Vector3 player = new Vector3(0 , 1 , -21.3f);
 
     private CharacterController controller;
 
@@ -110,9 +111,10 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) 
     {
-        Vector3 player =new Vector3(0 , 1 , -23.3f);
-        if (other.gameObject.name=="Enemy")
+        if (other.gameObject.tag == "Enemy")
+        {
            gameObject.transform.position= player;
+        }
     }
 
 
