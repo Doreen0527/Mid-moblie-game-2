@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Player : MonoBehaviour
     public GameObject bulletPrefab;
     public Material gold;
     public Material blue;
+    public string Level3;
+    public AudioSource source;
     private Vector3 player = new Vector3(0 , 1 , -21.3f);
 
     private CharacterController controller;
@@ -93,8 +96,9 @@ public class Player : MonoBehaviour
     {
         // 產生出子彈
         Instantiate(bulletPrefab, firePoint.transform.position, transform.rotation);
+        source.Play();
     }
-
+    
 
     // 一直射擊的 Coroutine 函式
     IEnumerator KeepShooting()
@@ -129,6 +133,8 @@ public class Player : MonoBehaviour
       {
           Destroy (other.gameObject);
       }
+      if (other.gameObject.name=="Box")
+           SceneManager.LoadScene("Level3");
     }
 
      private void OnTriggerStay(Collider other) 
