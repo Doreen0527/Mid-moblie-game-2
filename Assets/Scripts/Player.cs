@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     public Material blue;
     public string Level3;
     public AudioSource source;
+    public GameObject Music;
+    GameObject[] Mus = null;
     private Vector3 player = new Vector3(0 , 1 , -21.3f);
 
     private CharacterController controller;
@@ -29,6 +31,12 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        Mus = GameObject.FindGameObjectsWithTag("music");
+        if (Mus == null)
+        {
+             Instantiate(Music,transform.position,transform.rotation);
+        }
+        
         // 找到最近的一個目標 Enemy 的物件
         GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
 
@@ -89,6 +97,7 @@ public class Player : MonoBehaviour
         // 移動角色位置
         controller.Move(dir * speed * Time.deltaTime);
 
+        
 
     }
 

@@ -21,11 +21,6 @@ public class gold : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-      if (other.gameObject.tag == "gold")
-      {
-          GetComponent<MeshRenderer>().material=Gold ;
-      }
-
       if (this.gameObject.tag == "gold")
       {
           Destroy (this.gameObject);

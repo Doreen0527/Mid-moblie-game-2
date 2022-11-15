@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
             
             if (hp <= 0)
             {
-                Instantiate(gold,this.transform.position,transform.rotation);
+                Instantiate(gold, this.transform.position, transform.rotation);
                 gameObject.SetActive(false);
                 Destroy(gameObject);
             }
